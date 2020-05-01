@@ -1,6 +1,7 @@
 import React from "react";
 import ArrowDropDownSharpIcon from "@material-ui/icons/ArrowDropDownSharp";
 import ArrowDropUpSharpIcon from "@material-ui/icons/ArrowDropUpSharp";
+import { AddRow } from "./AddRow";
 
 class App extends React.Component {
   constructor() {
@@ -66,6 +67,7 @@ class App extends React.Component {
     } = this.state;
     return (
       <div className="container">
+        <AddRow />
         <table className="table table-dark">
           <thead>
             <tr>
