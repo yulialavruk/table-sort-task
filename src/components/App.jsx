@@ -2,13 +2,14 @@ import React from "react";
 import ArrowDropDownSharpIcon from "@material-ui/icons/ArrowDropDownSharp";
 import ArrowDropUpSharpIcon from "@material-ui/icons/ArrowDropUpSharp";
 import { AddRow } from "./AddRow";
+import { connect } from "react-redux";
+import { getData, toggleModal } from "../actions/Actions";
 
 class App extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      data: [],
       sortBy: {
         name: "",
         option: "desc",
@@ -17,8 +18,8 @@ class App extends React.Component {
   }
 
   sortBy = (name) => {
+    const { data } = this.props;
     const {
-      data,
       sortBy: { option },
     } = this.state;
     this.setState(
@@ -49,25 +50,17 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    fetch(
-      "http://www.filltext.com/?rows=32&id={number|1000}&firstName={firstName}&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}"
-    )
-      .then((data) => data.json())
-      .then((data) =>
-        this.setState({
-          data,
-        })
-      );
+    this.props.getData();
   }
 
   render() {
+    const { data, showModal, toggleModal } = this.props;
     const {
-      data,
       sortBy: { option },
     } = this.state;
     return (
       <div className="container">
-        <AddRow />
+        <AddRow data={data} showModal={showModal} toggleModal={toggleModal} />
         <table className="table table-dark">
           <thead>
             <tr>
@@ -130,4 +123,18 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    data: state.data,
+    showModal: state.showModal,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getData: () => dispatch(getData()),
+    toggleModal: () => dispatch(toggleModal()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -23,6 +23,11 @@ export class AddRowForm extends React.Component {
     });
   };
 
+  onAddRow = (e) => {
+    e.preventDefault();
+    return this.props.data.unshift(this.state);
+  };
+
   render() {
     const { id, firstName, lastName, email, phone } = this.state;
     return (
@@ -77,7 +82,7 @@ export class AddRowForm extends React.Component {
             onChange={this.onChange}
           />
         </FormGroup>
-        <Button>Добавить</Button>
+        <Button onClick={this.onAddRow}>Добавить</Button>
       </Form>
     );
   }
