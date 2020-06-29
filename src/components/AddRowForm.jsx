@@ -25,6 +25,7 @@ export class AddRowForm extends React.Component {
 
   onAddRow = (e) => {
     e.preventDefault();
+    this.props.toggleModal();
     return this.props.data.unshift(this.state);
   };
 

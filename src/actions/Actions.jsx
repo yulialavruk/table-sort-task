@@ -19,6 +19,5 @@ export const getData = () => (dispatch) => {
     .then((data) => dispatch(actionCreatorGetData(data)));
 };
 
-export const toggleModal = () => (dispatch) => {
-  dispatch(actionCreatorShowModal);
-};
+export const toggleModal = () => (dispatch) =>
+  dispatch(actionCreatorShowModal());

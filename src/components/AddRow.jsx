@@ -13,10 +13,10 @@ export const AddRow = ({ data, showModal, toggleModal }) => (
     >
       Добавить
     </Button>
-    <Modal isOpen={showModal} toggle={() => toggleModal}>
-      <ModalHeader toggle={() => toggleModal}>Добавить данные</ModalHeader>
+    <Modal isOpen={showModal} toggle={() => toggleModal()}>
+      <ModalHeader toggle={() => toggleModal()}>Добавить данные</ModalHeader>
       <ModalBody>
-        <AddRowForm data={data} />
+        <AddRowForm data={data} toggleModal={toggleModal} />
       </ModalBody>
     </Modal>
   </>
